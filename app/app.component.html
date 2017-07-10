@@ -1,0 +1,24 @@
+<header>
+	<img src="img/angular.svg" />
+	<h1>{{title}}</h1>
+</header>
+<main>
+	<form class="todo-form" (submit)="create($event,titleInput)">
+		<input type="text" placeholder="What need to do ?" #titleInput>
+		<button type="submit">Add</button>
+	</form>
+
+	<section class="todo-list" *ngIf="todos.length">
+		<div class="todo-item" *ngFor="let todo of todos" [class.completed]="todo.completed">
+			<button class="checkbox icon" (click)="toggle(todo)">
+				<i class="material-icons">{{ todo.completed ? 'check_box' : 'check_box_outline_blank'}}</i>
+			</button>
+			<span class="title">{{ todo.title }}</span>
+			<div class="actions">
+				<button class="delete icon" (click)="delete(todo)">
+					<i class="material-icons">Delete</i>
+				</button>
+			</div>
+		</div>
+	</section>
+</main>
